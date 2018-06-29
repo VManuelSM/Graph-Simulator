@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author victo
  */
 public class NodeList extends ArrayList<Node>{
-    public Node lookingForTheSmaller(){
+    public Node searchingTheShorter(){
     Node auxNode = new Node();
     auxNode.setPathLength(9999999.0D);
     for(Node node : this){
