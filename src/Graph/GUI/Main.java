@@ -5,17 +5,31 @@
  */
 package Graph.GUI;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author victo
  */
 public class Main extends javax.swing.JFrame {
-
+    boolean open;
+    DrawingPanel drawingPanel;
+    DefaultListModel nodesModel;
+    DefaultListModel edgesModel;
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.nodesModel = new DefaultListModel();
+        this.edgesModel = new DefaultListModel();
+        this.jLisNod.setModel(this.nodesModel);
+        this.jLisEdg.setModel(this.edgesModel);
+        this.drawingPanel = new DrawingPanel(this.jComBoxFirNod, this.jComBoxLasNod, this.nodesModel, this.edgesModel, this.lblShoPat);
+        this.drawingPanel.changeCursor(DrawingPanel.TypeElement.NODE);
+        this.jScrPanGra.setViewportView(this.drawingPanel);
     }
 
     /**
@@ -27,21 +41,227 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jLisNod = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jLisEdg = new javax.swing.JList<>();
+        jScrPanGra = new javax.swing.JScrollPane();
+        btnAddEdg = new javax.swing.JButton();
+        btnAddNod = new javax.swing.JButton();
+        btnAlgDis = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblShoPat = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jComBoxLasNod = new javax.swing.JComboBox<>();
+        jComBoxFirNod = new javax.swing.JComboBox<>();
+        btnStaHau = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLisNod.setBackground(new java.awt.Color(126, 181, 79));
+        jLisNod.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jLisNod);
+
+        jTabbedPane1.addTab("Nodos", jScrollPane2);
+
+        jLisEdg.setBackground(new java.awt.Color(126, 181, 79));
+        jLisEdg.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jLisEdg);
+
+        jTabbedPane1.addTab("Aristas", jScrollPane3);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 140, 420));
+
+        jScrPanGra.setBackground(new java.awt.Color(73, 25, 102));
+        getContentPane().add(jScrPanGra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 610, 520));
+
+        btnAddEdg.setBackground(new java.awt.Color(18, 47, 63));
+        btnAddEdg.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddEdg.setText("Agregar Arista");
+        btnAddEdg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEdgActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAddEdg, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 200, 150, -1));
+
+        btnAddNod.setBackground(new java.awt.Color(18, 47, 63));
+        btnAddNod.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddNod.setText("Agregar Nodo");
+        btnAddNod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNodActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAddNod, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 120, 150, -1));
+
+        btnAlgDis.setBackground(new java.awt.Color(18, 47, 63));
+        btnAlgDis.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlgDis.setText("Algoritmo Disjktra");
+        btnAlgDis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlgDisActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAlgDis, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 290, 150, -1));
+
+        jButton5.setText("Salir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 650, 110, -1));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Grafos - Algoritmo Disjktra");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 160, 20));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Estructuras de Datos Avanzadas");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, -1, -1));
+
+        lblShoPat.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(lblShoPat, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 640, 320, 30));
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Recorrido:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 646, -1, 20));
+
+        jPanel1.setBackground(new java.awt.Color(73, 25, 101));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ruta más corta", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        jComBoxLasNod.setBackground(new java.awt.Color(18, 47, 63));
+        jComBoxLasNod.setForeground(new java.awt.Color(255, 255, 255));
+        jComBoxLasNod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComBoxLasNodActionPerformed(evt);
+            }
+        });
+
+        jComBoxFirNod.setBackground(new java.awt.Color(18, 47, 63));
+        jComBoxFirNod.setForeground(new java.awt.Color(255, 255, 255));
+        jComBoxFirNod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComBoxFirNodActionPerformed(evt);
+            }
+        });
+
+        btnStaHau.setBackground(new java.awt.Color(18, 47, 63));
+        btnStaHau.setForeground(new java.awt.Color(255, 255, 255));
+        btnStaHau.setText("Recorrer");
+        btnStaHau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStaHauActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComBoxLasNod, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComBoxFirNod, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStaHau, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jComBoxLasNod, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComBoxFirNod, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(btnStaHau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 350, 150, 150));
+
+        jButton2.setBackground(btnAddEdg.getBackground());
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Eliminar Nodo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 160, 150, -1));
+
+        jButton3.setBackground(btnAddEdg.getBackground());
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Cambiar Peso");
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 250, 150, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graph/media/UPPwallpaper.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddEdgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEdgActionPerformed
+        this.drawingPanel.changeCursor(DrawingPanel.TypeElement.EDGE_2S);
+    }//GEN-LAST:event_btnAddEdgActionPerformed
+
+    private void btnAddNodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNodActionPerformed
+        this.drawingPanel.changeCursor(DrawingPanel.TypeElement.NODE);
+    }//GEN-LAST:event_btnAddNodActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jComBoxFirNodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComBoxFirNodActionPerformed
+        if ((this.jComBoxFirNod.getItemCount() > 0) && (!this.open))
+    {
+      this.drawingPanel.graph.changeNode(this.jComBoxFirNod.getSelectedItem().toString(), 0);
+      this.drawingPanel.repaint();
+    }
+    }//GEN-LAST:event_jComBoxFirNodActionPerformed
+
+    private void btnAlgDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlgDisActionPerformed
+        DijkstraTable window = new DijkstraTable();
+        window.setGraph(this.drawingPanel.graph);
+        window.graph.setjComboBoxFirstNode(this.jComBoxFirNod);
+        window.selectFirstNode();
+        window.setVisible(true);
+    }//GEN-LAST:event_btnAlgDisActionPerformed
+
+    private void jComBoxLasNodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComBoxLasNodActionPerformed
+        if ((this.jComBoxLasNod.getItemCount() > 0) && (!this.open))
+        {
+            this.drawingPanel.graph.changeNode(this.jComBoxLasNod.getSelectedItem().toString(), 1);
+            this.drawingPanel.repaint();
+    }
+    }//GEN-LAST:event_jComBoxLasNodActionPerformed
+
+    private void btnStaHauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStaHauActionPerformed
+        this.drawingPanel.solution(this.jComBoxFirNod.getSelectedItem() + "", this.jComBoxLasNod.getSelectedItem() + "", this.lblShoPat);
+        this.drawingPanel.repaint();
+    }//GEN-LAST:event_btnStaHauActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.drawingPanel.changeCursor(DrawingPanel.TypeElement.DELETE);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +299,26 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddEdg;
+    private javax.swing.JButton btnAddNod;
+    private javax.swing.JButton btnAlgDis;
+    private javax.swing.JButton btnStaHau;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox<String> jComBoxFirNod;
+    private javax.swing.JComboBox<String> jComBoxLasNod;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JList<String> jLisEdg;
+    private javax.swing.JList<String> jLisNod;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrPanGra;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblShoPat;
     // End of variables declaration//GEN-END:variables
 }

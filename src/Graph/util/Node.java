@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author victo
+ * @author Víctor Manuel
  */
 public class Node {
     private int x;
@@ -19,25 +19,25 @@ public class Node {
     private String name;
     private boolean mark;
     private boolean visited;
-    private Node previousDisjktra;
+    private Node previousDijkstra;
     private ArrayList<Link> nodesAdjacentsList;
 
-    public Node(int x, int y, String name, ArrayList<Link> nodesAdjacentsList) {
+    public Node(int x, int y, String name) {
         this.x = x;
         this.y = y;
         this.name = name;
-        this.nodesAdjacentsList = nodesAdjacentsList;
-        startDisjktra();
+        this.nodesAdjacentsList = new ArrayList();
+        startDijkstra();
     }
     
-    public Node () {startDisjktra();}
+    public Node () {startDijkstra();}
     
     /**
-     * Start the properties to execute Disjktra algorithm.
+     * Start the properties to execute Dijkstra algorithm.
      */
-    private void startDisjktra(){
+    private void startDijkstra(){
     this.pathLength = -1.0D;
-    this.previousDisjktra = null;
+    this.previousDijkstra = null;
     this.mark = false;
     }
     
@@ -105,12 +105,12 @@ public class Node {
         this.visited = visited;
     }
 
-    public Node getPreviousDisjktra() {
-        return previousDisjktra;
+    public Node getPreviousDijkstra() {
+        return previousDijkstra;
     }
 
-    public void setPreviousDisjktra(Node previousDisjktra) {
-        this.previousDisjktra = previousDisjktra;
+    public void setPreviousDijkstra(Node previousDijkstra) {
+        this.previousDijkstra = previousDijkstra;
     }
     //Puede que necesite editarlo
     public ArrayList<Link> getNodesAdjacentsList() {
