@@ -1,5 +1,4 @@
  package Graph.GUI;
- 
  import Graph.util.Edge;
  import Graph.util.Dijkstra;
  import Graph.util.Graph;
@@ -20,7 +19,6 @@
  import javax.swing.JOptionPane;
  import javax.swing.JPanel;
  
- 
  public class DrawingPanel extends JPanel implements MouseListener, MouseMotionListener
  {
    TypeElement typeElement;
@@ -32,7 +30,7 @@
    private Image redNode;
    private Image greenNode; 
    private Image blueNode; 
-   Image image = null; 
+   
    public Graph graph;
    int x1 = 0; int x2 = 0; int y1 = 0; int y2 = 0;
    /**
@@ -46,12 +44,12 @@
    
    
    /**
-    * Consructor de la Clase PanelDibujo
-    * @param cboxNI JComboBox donde se seleccionará el nodo inicial
-    * @param cboxNF JComboBox donde se seleccionará el nodo final
-    * @param modelNodos Modelo de lista de nodos
-    * @param modelAristas Modelo de lista de aristas
-    * @param lbl Label
+    * Drawing Panel Builder
+    * @param jComboBoxFirstNode Initial node selected. It is asigned from the GUI previoulsy builded.
+    * @param jComboBoxLastNode Last node selected. It is asigned from the GUI previoulsy builded.
+    * @param nodesModel Nodes list. It is asigned from the GUI previoulsy builded.
+    * @param edgesModel Edges list. It is asigned from the GUI previoulsy builded.
+    * @param label Label which is use it to show to the user what's the shortest path between two nodes.
     */
    public DrawingPanel(JComboBox jComboBoxFirstNode, JComboBox jComboBoxLastNode, DefaultListModel nodesModel, DefaultListModel edgesModel, JLabel label)
    {
@@ -64,7 +62,9 @@
      loadImages();
    }
    
- 
+   /**
+    * Load the nodes GIF images into the JPanel.
+    */
    private void loadImages()
    {
      Toolkit tk = Toolkit.getDefaultToolkit();
@@ -74,7 +74,15 @@
      this.blueNode = tk.getImage(getClass().getResource("/Graph/media/blueNode.gif"));
    }
    
-   //Cambia el tipo de cursor respecto a la accion
+   /**
+    * Change the cursor respect the typeElement
+    * @param typeElement CONSTANT that define which is the appropiate cursor
+    * int NODE is = 0.
+    * int EDGE_1S is 1.
+    * int EDGE_2S is 2.
+    * int MOVE is 3.
+    * int DELETE is 4.
+    */
    public void changeCursor(TypeElement typeElement) {
      this.typeElement = typeElement;
      if (null == typeElement) {
@@ -97,8 +105,10 @@
                break;
        }
    }
-   
-   
+   /**
+    * Change the point of a node
+    * @param e mouse cursor event
+    */
    private void changePoint(MouseEvent e) {
      if (this.graph.inBounds(e) != -1) {
        Node node = (Node)this.graph.getNodes().get(this.graph.inBounds(e));
@@ -125,7 +135,10 @@
      }
    }
    
-   //Dibuja una flecha
+   /**
+    * Draws graph's arrows
+    * @param g Graphics
+    */
    private void drawArrow(Graphics g) {
      for (Edge edge : this.graph.getEdges()) {
        if (edge.getSense() == 1) {
@@ -146,11 +159,7 @@
        }
      }
    }
-   
-   public void loadImage(Image imagee) {
-     this.image = image;
-   }
-   
+
    public void editEdge(int[] selectedEdge) {
      if (selectedEdge.length == 0) {
        JOptionPane.showMessageDialog(null, "Seleccione una arista de la lista para editar el peso");
@@ -173,16 +182,6 @@
          } catch (Exception e) { 
              JOptionPane.showMessageDialog(null, "Ingreso de arista cancelado"); }
              JOptionPane.showMessageDialog(null, "Seleccione solo una arista");
-     }
-   }
-   
-   public Image getImage() { 
-       return this.image; }
-   
-   private void drawImage(Graphics g)
-   {
-     if (this.image != null) {
-       g.drawImage(this.image, 0, 0, this.image.getWidth(this), this.image.getHeight(this), this);
      }
    }
    
@@ -213,7 +212,6 @@
    }
    
    public void cleanMap() { 
-     loadImage(null);
      this.graph.getEdges().clear();
      this.graph.getNodes().clear();
      this.graph.updateNodesComboBox();
@@ -223,7 +221,7 @@
      Dijkstra dijkstra = new Dijkstra();
      this.graph.restartDijkstraGraph(label);
      dijkstra.execute(this.graph.searchNode(nodeOne));
-     dijkstra.shorterPath(this.graph.searchNode(nodeTwo));
+     dijkstra.shortestPath(this.graph.searchNode(nodeTwo));
      double distance = 0.0D;
      for (Edge edge : this.graph.getEdges()) {
        if (edge.getColor() == Color.GREEN) {
@@ -243,7 +241,7 @@
    {
      super.paintComponent(ga);
      Graphics2D g = (Graphics2D)ga;
-     drawImage(g);
+     
      drawAuxLine(g);
      drawArrow(g);
      drawEdges(g);

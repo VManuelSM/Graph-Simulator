@@ -9,18 +9,18 @@ import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 /**
- *
+ * Graph Builder.
+ * This classs is the abstraction of a Graph.
+ * Contains
  * @author victo
  */
-public class Graph {
+public class Graph implements Cloneable{
     List<Node> nodes = new ArrayList();
     List<Node> auxNodes = new ArrayList(2);
     List<Edge> edges = new ArrayList();
@@ -30,8 +30,12 @@ public class Graph {
     DefaultListModel nodesModel;
     DefaultListModel edgesModel;
     JLabel label;
+
+    public Graph() {
+    }
     
-    /**public String getAuxNode(){
+    
+    public String getAuxNode(){
     String nodes = "";
     System.out.print("Camino: ");
     for(Node node: auxNodes){
@@ -40,7 +44,7 @@ public class Graph {
     }
     System.out.println();
     return nodes;
-    }**/
+    }
     
     public JComboBox getjComboBoxFirstNode() {
         return jComboBoxFirstNode;
@@ -294,7 +298,21 @@ public class Graph {
      }
      return false;
     }
-
+    
+    public Object clone(){
+        Object obj=null;
+        try{
+            obj=super.clone();
+        }catch(CloneNotSupportedException ex){
+            System.out.println(" no se puede duplicar");
+        }
+        return obj;
+    }
+    public Object comboBoxClone(){
+        Object obj=null;
+        obj=this.jComboBoxFirstNode;
+        return obj;
+    }
     public List<Node> getNodes() {
         return nodes;
     }

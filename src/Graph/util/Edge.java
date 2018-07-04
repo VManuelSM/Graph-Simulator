@@ -23,7 +23,6 @@ public class Edge {
  * Edge Builder
  * @param sense Edge's sense (int)
  * @param weight Edge's weight (double)
- * @param enabled Edge's enable (boolean)
  * @param name Edge's name (String)
  * @param nodeOne Edge's nodeOne (Node)
  * @param nodeTwo Edge's nodeTwo (Node)
@@ -43,99 +42,99 @@ public class Edge {
         this.enabled = true;
     }
 /**
- * 
- * @return int
+ * sense Getter
+ * @return int sense
  */
     public int getSense() {
         return sense;
     }
 /**
- * 
- * @param sense 
+ * sense setter
+ * @param sense int sense 
  */
     public void setSense(int sense) {
         this.sense = sense;
     }
 /**
- * 
- * @return 
+ * weight getter
+ * @return  double weight
  */
     public double getWeight() {
         return weight;
     }
 /**
- * 
- * @param weight 
+ * weight setter
+ * @param weight double weight 
  */
     public void setWeight(double weight) {
         this.weight = weight;
     }
 /**
- * 
- * @return 
+ * enable getter
+ * @return boolean enabled
  */
     public boolean isEnabled() {
         return enabled;
     }
 /**
- * 
- * @param enabled 
+ * enable setter
+ * @param enabled boolean enabled 
  */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 /**
- * 
- * @return 
+ * name getter
+ * @return String name
  */
     public String getName() {
         return name;
     }
 /**
- * 
- * @param name 
+ * name setter
+ * @param name String name 
  */
     public void setName(String name) {
         this.name = name;
     }
 /**
- * 
- * @return 
+ * color getter
+ * @return Color color 
  */
     public Color getColor() {
         return color;
     }
 /**
- * 
- * @param color 
+ * color setter
+ * @param color Color color 
  */
     public void setColor(Color color) {
         this.color = color;
     }
 /**
- * 
- * @return 
+ * nodeOne getter
+ * @return Node nodeOne
  */
     public Node getNodeOne() {
         return nodeOne;
     }
 /**
- * 
- * @param nodeOne 
+ * nodeOne setter
+ * @param nodeOne Node nodeOne 
  */
     public void setNodeOne(Node nodeOne) {
         this.nodeOne = nodeOne;
     }
 /**
- * 
- * @return 
+ * nodeTwo getter
+ * @return Node nodeTwo
  */
     public Node getNodeTwo() {
         return nodeTwo;
     }
 /**
- * 
- * @param nodeTwo 
+ * nodeTwo setter
+ * @param nodeTwo Node nodeTwo 
  */
     public void setNodeTwo(Node nodeTwo) {
         this.nodeTwo = nodeTwo;

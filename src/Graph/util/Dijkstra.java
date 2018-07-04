@@ -18,6 +18,8 @@ public class Dijkstra {
     NodeList adjacentNodesList;
     NodeList auxAdjacentList;
     ArrayList<Edge> aux = new ArrayList();
+    public String dijkstraNodes = "";
+    NodeList nodes = new NodeList();
 
     public Dijkstra() {
         this.adjacentNodesList = new NodeList();
@@ -40,8 +42,10 @@ public class Dijkstra {
                         auxTwo.setPathLength(node.getPathLength()+link.getEdge().getWeight());
                         auxTwo.setPreviousDijkstra(node);
                         this.adjacentNodesList.add(auxTwo);
+                        
                     }
             }
+            
         }
     }
     }
@@ -53,63 +57,37 @@ public class Dijkstra {
                 this.adjacentNodesList = new NodeList();
                 this.adjacentNodesList.add(firstNode);
                 while(!this.adjacentNodesList.isEmpty()){
-                Node shorter = this.adjacentNodesList.searchingTheShorter();
+                Node shorter = this.adjacentNodesList.searchingTheShortest();
                 shorter.setMark(true);
                 this.adjacentNodesList.remove(shorter);
                 fillWithAdjacents(shorter);
                 } 
+                this.dijkstraNodes += " "+firstNode.getName();
+                
             }
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Necesita crear un grafo primero","Error durante el recorrido", JOptionPane.ERROR_MESSAGE);
         }
     }
     
-    public void AdjacentList(Node firstNode){
-    int i = 0;
-    if(firstNode != null){
-        this.auxAdjacentList = new NodeList();
-        this.auxAdjacentList.add(firstNode);
-        while(i < this.auxAdjacentList.size()){
-            Node search = this.auxAdjacentList.get(i);
-            searchingAdjacentNodes(search);
-            System.out.println();
-            i++;
-        }
-    }
-    }
-    
-    public void searchingAdjacentNodes(Node node){
-    if(node != null){
-        System.out.print(node.getName()+ " | ");
-        ArrayList<Link> auxList = node.getNodesAdjacentsList();
-        if(auxList != null){
-            for(Link link : auxList){
-            Node auxTwo = link.getNode();
-            if(this.auxAdjacentList.isContained(auxTwo)){
-                System.out.print(auxTwo.getName()+" , ");
-                auxTwo.setPreviousDijkstra(node);
-            } else {
-                auxTwo.setPreviousDijkstra(node);
-                this.auxAdjacentList.add(auxTwo);
-            }
-            }
-        }
-    }
-    }
-    
-    public void shorterPath(Node leastNode){
+    public void shortestPath(Node leastNode){
     this.aux.clear();
     Node auxNode = leastNode;
     Edge auxEdge;
     while(auxNode.getPreviousDijkstra() != null){
         auxEdge = getEdge(auxNode, auxNode.getPreviousDijkstra());
-        
+        nodes.add(auxNode);
         auxEdge.setColor(Color.GREEN);
         this.aux.add(auxEdge);
         auxNode = auxNode.getPreviousDijkstra();
     }
+    addingNodes();
     }
-    
+    private void addingNodes(){
+    for(int i = nodes.size()-1; i>=0; i--){
+    dijkstraNodes = dijkstraNodes +" "+nodes.get(i).getName();
+    }
+    }
     public boolean isAdjacent(Node nodeOne, Node nodeTwo){
     boolean adjacent = false;
     ArrayList<Link> edgesList = nodeOne.getNodesAdjacentsList();

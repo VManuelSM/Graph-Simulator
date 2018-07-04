@@ -5,6 +5,7 @@
  */
 package Graph.GUI;
 
+import Graph.util.Graph;
 import javax.swing.DefaultListModel;
 
 /**
@@ -180,9 +181,12 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComBoxLasNod, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComBoxFirNod, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnStaHau, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComBoxFirNod, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 21, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnStaHau, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,12 +194,11 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jComBoxLasNod, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jComBoxFirNod, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(btnStaHau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(btnStaHau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 350, 150, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 340, 150, 160));
 
         jButton2.setBackground(btnAddEdg.getBackground());
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,10 +243,11 @@ public class Main extends javax.swing.JFrame {
 
     private void btnAlgDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlgDisActionPerformed
         DijkstraTable window = new DijkstraTable();
-        window.setGraph(this.drawingPanel.graph);
-        window.graph.setjComboBoxFirstNode(this.jComBoxFirNod);
+        DrawingPanel aux = this.drawingPanel;
+        window.setGraph(aux.graph);
         window.selectFirstNode();
         window.setVisible(true);
+        this.drawingPanel.graph.setjComboBoxFirstNode(this.jComBoxFirNod);
     }//GEN-LAST:event_btnAlgDisActionPerformed
 
     private void jComBoxLasNodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComBoxLasNodActionPerformed
@@ -257,6 +261,7 @@ public class Main extends javax.swing.JFrame {
     private void btnStaHauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStaHauActionPerformed
         this.drawingPanel.solution(this.jComBoxFirNod.getSelectedItem() + "", this.jComBoxLasNod.getSelectedItem() + "", this.lblShoPat);
         this.drawingPanel.repaint();
+        
     }//GEN-LAST:event_btnStaHauActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

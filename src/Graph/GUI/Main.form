@@ -257,7 +257,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="840" y="350" width="150" height="150"/>
+          <AbsoluteConstraints x="840" y="340" width="150" height="160"/>
         </Constraint>
       </Constraints>
 
@@ -268,9 +268,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jComBoxLasNod" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
                       <Component id="jComBoxFirNod" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                      <Component id="btnStaHau" min="-2" pref="119" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnStaHau" min="-2" pref="119" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -280,9 +284,8 @@
                   <Component id="jComBoxLasNod" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jComBoxFirNod" min="-2" pref="26" max="-2" attributes="0"/>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
                   <Component id="btnStaHau" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

@@ -10,12 +10,14 @@ import Graph.util.Edge;
 import Graph.util.Graph;
 import Graph.util.Node;
 import java.awt.Color;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author victo
+ * This class shows the table with the results of
+ * the Dijkstra algorithm
+ * @author Víctor Manuel
  */
 public class DijkstraTable extends javax.swing.JFrame {
     Graph graph;
@@ -26,22 +28,38 @@ public class DijkstraTable extends javax.swing.JFrame {
     public DijkstraTable() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         model.setColumnIdentifiers(new Object[]{"Nodo","Distancia","Camino"});
     }
-
-    public Graph getGraph() {
+/**
+     * Graph getter
+     * @return Graph grpah
+     */
+    public Graph getGraph(){
         return graph;
     }
 
+    
     public void setGraph(Graph graph) {
         this.graph = graph;
-        
     }
-    public void selectFirstNode(){
-        JOptionPane.showMessageDialog(null, graph.getjComboBoxFirstNode(), "Elija un nodo de inicio", JOptionPane.QUESTION_MESSAGE);
-        this.nodo.setText(graph.getjComboBoxFirstNode().getSelectedItem().toString());
-        initFillDijkstraTable(graph.getjComboBoxFirstNode().getSelectedItem().toString());
+
+    /**
+     * Selected the node which is going to be the initial node for the calculations
+     * of Dijkstra algorithn
+     * Asign the selected node at label of initial node
+     * start initFillDijkstraTable()
+     */
+    public void selectFirstNode() {
+        JComboBox firstNode = (JComboBox)this.graph.comboBoxClone();
+        JOptionPane.showMessageDialog(null, firstNode, "Elija un nodo de inicio", JOptionPane.QUESTION_MESSAGE);
+        this.nodo.setText(this.graph.getjComboBoxFirstNode().getSelectedItem().toString());
+        initFillDijkstraTable(this.graph.getjComboBoxFirstNode().getSelectedItem().toString());
     }
+    /**
+     * 
+     * @param initialNode 
+     */
     public void initFillDijkstraTable(String initialNode){
         for(Node node:this.graph.getNodes()){
           solution(initialNode, node.getName());
@@ -111,6 +129,8 @@ public class DijkstraTable extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nodo inicial:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 80, -1));
+
+        nodo.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(nodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 50, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Graph/media/DisjktraTableWallpaper.png"))); // NOI18N
@@ -120,7 +140,7 @@ public class DijkstraTable extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -162,15 +182,14 @@ public class DijkstraTable extends javax.swing.JFrame {
      Dijkstra dijkstra = new Dijkstra();
      this.graph.restartDijkstraGraph();
      dijkstra.execute(this.graph.searchNode(nodeOne));
-     dijkstra.shorterPath(this.graph.searchNode(nodeTwo));
+     dijkstra.shortestPath(this.graph.searchNode(nodeTwo));
      double distance = 0.0D;
      for (Edge edge : this.graph.getEdges()) {
        if (edge.getColor() == Color.GREEN) {
          distance += edge.getWeight();
-         System.out.println(edge.getNodeOne().getName()+" + "+edge.getNodeTwo().getName());
        }
      }
-     model.addRow(new Object[]{nodeTwo,distance,nodeTwo});
+     model.addRow(new Object[]{nodeTwo,distance,dijkstra.dijkstraNodes});
      this.jTable1.setModel(model);
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -182,4 +201,6 @@ public class DijkstraTable extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel nodo;
     // End of variables declaration//GEN-END:variables
+
+    
 }
